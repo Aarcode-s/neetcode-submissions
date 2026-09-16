@@ -1,8 +1,17 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        res = {}
-        for n in nums:
-            if n not in res:
-                res[n] = 0
-            res[n] += 1
-        return sorted(res, key=res.get, reverse = True)[:k]
+        ans = []
+        count = {}
+
+        for i in nums:
+            count[i] = count.get(i, 0) + 1
+
+        for _ in range(k):
+            if not count:
+                break
+
+            key = max(count, key=count.get)
+            ans.append(key)
+            count.pop(key)
+
+        return ans
