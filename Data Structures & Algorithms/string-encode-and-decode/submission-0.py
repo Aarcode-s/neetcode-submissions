@@ -1,28 +1,34 @@
 class Solution:
-    def __init__(self):
-        self.length = []
-        self.n = 0
+
     def encode(self, strs: List[str]) -> str:
-        self.length = []
-        self.n = len(strs)
 
-        encoded_str = ""
+        encoded_string = ""
 
-        for s in strs:
-            self.length.append(len(s))
-            encoded_str += s
+        for string in strs:
+            x = len(string)
+            encoded_string += str(x) + "#" + string
 
-        return encoded_str
+        return encoded_string
 
     def decode(self, s: str) -> List[str]:
-        output = []
-        left = 0
 
-        for i in range(self.n):
-            right = left + self.length[i]
-            output.append(s[left:right])
-            left = right
+        decoded_string = []
 
-        return output
-        
+        i = 0
 
+        while i < len(s):
+
+            j = i
+
+            while s[j] != "#":
+                j += 1
+
+            length = int(s[i:j])
+
+            i = j + 1
+
+            decoded_string.append(s[i:i + length])
+
+            i = i + length
+
+        return decoded_string
