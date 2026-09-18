@@ -1,20 +1,15 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
-        freq = {}
-        ans = set()
+        n = len(nums)
+        hashmap = {}
+
         for num in nums:
-            freq[num] = freq.get(num , 0) +1
+            hashmap[num] = hashmap.get(num, 0) + 1
 
-            for key, count in freq.items():
-                 if count > len(nums)/3:
-                    ans.add(key)
-        return list(ans)
+        output = []
 
-        
+        for key in hashmap:
+            if hashmap[key] > n / 3:
+                output.append(key)
 
-
-                     
-                    
-            
-            
-                
+        return output
